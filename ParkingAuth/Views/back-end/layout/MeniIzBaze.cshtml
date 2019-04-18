@@ -1,0 +1,46 @@
+﻿
+@using ParkingAuth.Models
+@{
+    ParkingServisPajaASPEntities db = new ParkingServisPajaASPEntities();
+    IEnumerable<menu> MenuTree = db.menu.ToList();
+    //var result = (from m in MenuTree
+    //              orderby m.naslov_menu ascending
+    //              select new menu
+    //              {
+    //                  menu_id = m.menu_id,
+    //                  slug = m.slug,
+    //                  icon = m.icon,
+    //                  parent_id = m.parent_id,
+    //                  naslov_menu = m.naslov_menu,
+    //                  controller = m.controller,
+    //                  action = m.action
+    //              }
+    //        ).ToList();
+}
+
+@{ foreach (var level_1 in MenuTree.Where(s => s.parent_id == 0).GroupBy(parametar_objekat => new
+    {
+        parametar_objekat.menu_id
+    }).Distinct().ToList())
+    {
+        <li>
+            <a onclick="return false" ondblclick="location=this.href" href="~/admin/@level_1.FirstOrDefault().controller/@level_1.FirstOrDefault().action">
+                @level_1.FirstOrDefault().naslov_menu
+            </a>
+            <ul>
+                <li>
+                    @foreach (var level_2 in MenuTree.Where(s => s.parent_id == level_1.FirstOrDefault().menu_id).ToList())
+                    {
+                        <a onclick="return false" ondblclick="location=this.href" href="~/admin/@level_2.controller/@level_2.action">@level_2.naslov_menu</a>
+
+                    }
+
+                </li>
+            </ul>
+        </li>
+    }
+
+}
+
+
+

@@ -1,0 +1,458 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ParkingServisPajaASPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="korisnici">
+          <Key>
+            <PropertyRef Name="korisnici_id" />
+          </Key>
+          <Property Name="korisnici_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ime" Type="nvarchar" MaxLength="50" />
+          <Property Name="prezime" Type="nvarchar" MaxLength="50" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar(max)" />
+          <Property Name="telefon" Type="nvarchar" MaxLength="50" />
+          <Property Name="vrsta_korisnika_id" Type="bigint" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="menu">
+          <Key>
+            <PropertyRef Name="menu_id" />
+          </Key>
+          <Property Name="menu_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="slug" Type="nvarchar(max)" />
+          <Property Name="icon" Type="nvarchar(max)" />
+          <Property Name="naslov_menu" Type="nvarchar(max)" />
+          <Property Name="tekst" Type="text" />
+          <Property Name="parent_id" Type="bigint" />
+          <Property Name="controller" Type="nvarchar" MaxLength="100" />
+          <Property Name="action" Type="nvarchar" MaxLength="100" />
+          <Property Name="layout" Type="nvarchar" MaxLength="50" />
+          <Property Name="redosled" Type="int" />
+          <Property Name="vrsta_korisnici_id" Type="bigint" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="nacin_placanja">
+          <Key>
+            <PropertyRef Name="nacin_placanja_id" />
+          </Key>
+          <Property Name="nacin_placanja_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naziv_nacin_placanja" Type="nvarchar" MaxLength="50" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="parking_karte">
+          <Key>
+            <PropertyRef Name="parking_karte_id" />
+          </Key>
+          <Property Name="parking_karte_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="parking_zona_id" Type="bigint" />
+          <Property Name="registarske_tablice" Type="nvarchar" MaxLength="50" />
+          <Property Name="parking_karata_datum_isteka" Type="datetime" />
+          <Property Name="nacin_placanja_id" Type="bigint" />
+          <Property Name="parking_karta_datum_kupovine" Type="datetime" />
+          <Property Name="parking_kazna" Type="nvarchar" MaxLength="50" />
+          <Property Name="korisnici_id" Type="bigint" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="parking_zone">
+          <Key>
+            <PropertyRef Name="parking_zone_id" />
+          </Key>
+          <Property Name="parking_zone_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naziv_parking_zone" Type="nvarchar" MaxLength="50" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="vrsta_korisnici">
+          <Key>
+            <PropertyRef Name="vrsta_korisnici_id" />
+          </Key>
+          <Property Name="vrsta_korisnici_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naziv_vrsta_korisnici" Type="nvarchar" MaxLength="50" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_korisnici_vrsta_korisnika">
+          <End Role="vrsta_korisnici" Type="Self.vrsta_korisnici" Multiplicity="0..1" />
+          <End Role="korisnici" Type="Self.korisnici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vrsta_korisnici">
+              <PropertyRef Name="vrsta_korisnici_id" />
+            </Principal>
+            <Dependent Role="korisnici">
+              <PropertyRef Name="vrsta_korisnika_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_menu_vrsta_korisnici">
+          <End Role="vrsta_korisnici" Type="Self.vrsta_korisnici" Multiplicity="0..1" />
+          <End Role="menu" Type="Self.menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vrsta_korisnici">
+              <PropertyRef Name="vrsta_korisnici_id" />
+            </Principal>
+            <Dependent Role="menu">
+              <PropertyRef Name="vrsta_korisnici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_parking_karte_korisnici">
+          <End Role="korisnici" Type="Self.korisnici" Multiplicity="0..1" />
+          <End Role="parking_karte" Type="Self.parking_karte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="korisnici">
+              <PropertyRef Name="korisnici_id" />
+            </Principal>
+            <Dependent Role="parking_karte">
+              <PropertyRef Name="korisnici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_parking_karte_nacin_placanja">
+          <End Role="nacin_placanja" Type="Self.nacin_placanja" Multiplicity="0..1" />
+          <End Role="parking_karte" Type="Self.parking_karte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nacin_placanja">
+              <PropertyRef Name="nacin_placanja_id" />
+            </Principal>
+            <Dependent Role="parking_karte">
+              <PropertyRef Name="nacin_placanja_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_parking_karte_parking_zone">
+          <End Role="parking_zone" Type="Self.parking_zone" Multiplicity="0..1" />
+          <End Role="parking_karte" Type="Self.parking_karte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="parking_zone">
+              <PropertyRef Name="parking_zone_id" />
+            </Principal>
+            <Dependent Role="parking_karte">
+              <PropertyRef Name="parking_zona_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ParkingServisPajaASPModelStoreContainer">
+          <EntitySet Name="korisnici" EntityType="Self.korisnici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="menu" EntityType="Self.menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nacin_placanja" EntityType="Self.nacin_placanja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="parking_karte" EntityType="Self.parking_karte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="parking_zone" EntityType="Self.parking_zone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vrsta_korisnici" EntityType="Self.vrsta_korisnici" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_korisnici_vrsta_korisnika" Association="Self.FK_korisnici_vrsta_korisnika">
+            <End Role="vrsta_korisnici" EntitySet="vrsta_korisnici" />
+            <End Role="korisnici" EntitySet="korisnici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_menu_vrsta_korisnici" Association="Self.FK_menu_vrsta_korisnici">
+            <End Role="vrsta_korisnici" EntitySet="vrsta_korisnici" />
+            <End Role="menu" EntitySet="menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_parking_karte_korisnici" Association="Self.FK_parking_karte_korisnici">
+            <End Role="korisnici" EntitySet="korisnici" />
+            <End Role="parking_karte" EntitySet="parking_karte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_parking_karte_nacin_placanja" Association="Self.FK_parking_karte_nacin_placanja">
+            <End Role="nacin_placanja" EntitySet="nacin_placanja" />
+            <End Role="parking_karte" EntitySet="parking_karte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_parking_karte_parking_zone" Association="Self.FK_parking_karte_parking_zone">
+            <End Role="parking_zone" EntitySet="parking_zone" />
+            <End Role="parking_karte" EntitySet="parking_karte" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ParkingServisPajaASPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="korisnici">
+          <Key>
+            <PropertyRef Name="korisnici_id" />
+          </Key>
+          <Property Name="korisnici_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="vrsta_korisnika_id" Type="Int64" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="vrsta_korisnici" Relationship="Self.FK_korisnici_vrsta_korisnika" FromRole="korisnici" ToRole="vrsta_korisnici" />
+          <NavigationProperty Name="parking_karte" Relationship="Self.FK_parking_karte_korisnici" FromRole="korisnici" ToRole="parking_karte" />
+        </EntityType>
+        <EntityType Name="menu">
+          <Key>
+            <PropertyRef Name="menu_id" />
+          </Key>
+          <Property Name="menu_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="slug" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="icon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="naslov_menu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="parent_id" Type="Int64" />
+          <Property Name="controller" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="action" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="redosled" Type="Int32" />
+          <Property Name="vrsta_korisnici_id" Type="Int64" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="vrsta_korisnici" Relationship="Self.FK_menu_vrsta_korisnici" FromRole="menu" ToRole="vrsta_korisnici" />
+          <Property Name="tekst" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="layout" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="nacin_placanja">
+          <Key>
+            <PropertyRef Name="nacin_placanja_id" />
+          </Key>
+          <Property Name="nacin_placanja_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="naziv_nacin_placanja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="parking_karte" Relationship="Self.FK_parking_karte_nacin_placanja" FromRole="nacin_placanja" ToRole="parking_karte" />
+        </EntityType>
+        <EntityType Name="parking_karte">
+          <Key>
+            <PropertyRef Name="parking_karte_id" />
+          </Key>
+          <Property Name="parking_karte_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="parking_zona_id" Type="Int64" />
+          <Property Name="registarske_tablice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="parking_karata_datum_isteka" Type="DateTime" Precision="3" />
+          <Property Name="nacin_placanja_id" Type="Int64" />
+          <Property Name="parking_karta_datum_kupovine" Type="DateTime" Precision="3" />
+          <Property Name="parking_kazna" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="korisnici_id" Type="Int64" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="korisnici" Relationship="Self.FK_parking_karte_korisnici" FromRole="parking_karte" ToRole="korisnici" />
+          <NavigationProperty Name="nacin_placanja" Relationship="Self.FK_parking_karte_nacin_placanja" FromRole="parking_karte" ToRole="nacin_placanja" />
+          <NavigationProperty Name="parking_zone" Relationship="Self.FK_parking_karte_parking_zone" FromRole="parking_karte" ToRole="parking_zone" />
+        </EntityType>
+        <EntityType Name="parking_zone">
+          <Key>
+            <PropertyRef Name="parking_zone_id" />
+          </Key>
+          <Property Name="parking_zone_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="naziv_parking_zone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="parking_karte" Relationship="Self.FK_parking_karte_parking_zone" FromRole="parking_zone" ToRole="parking_karte" />
+        </EntityType>
+        <EntityType Name="vrsta_korisnici">
+          <Key>
+            <PropertyRef Name="vrsta_korisnici_id" />
+          </Key>
+          <Property Name="vrsta_korisnici_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="naziv_vrsta_korisnici" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="korisnici" Relationship="Self.FK_korisnici_vrsta_korisnika" FromRole="vrsta_korisnici" ToRole="korisnici" />
+          <NavigationProperty Name="menu" Relationship="Self.FK_menu_vrsta_korisnici" FromRole="vrsta_korisnici" ToRole="menu" />
+        </EntityType>
+        <Association Name="FK_korisnici_vrsta_korisnika">
+          <End Role="vrsta_korisnici" Type="Self.vrsta_korisnici" Multiplicity="0..1" />
+          <End Role="korisnici" Type="Self.korisnici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vrsta_korisnici">
+              <PropertyRef Name="vrsta_korisnici_id" />
+            </Principal>
+            <Dependent Role="korisnici">
+              <PropertyRef Name="vrsta_korisnika_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_parking_karte_korisnici">
+          <End Role="korisnici" Type="Self.korisnici" Multiplicity="0..1" />
+          <End Role="parking_karte" Type="Self.parking_karte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="korisnici">
+              <PropertyRef Name="korisnici_id" />
+            </Principal>
+            <Dependent Role="parking_karte">
+              <PropertyRef Name="korisnici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_menu_vrsta_korisnici">
+          <End Role="vrsta_korisnici" Type="Self.vrsta_korisnici" Multiplicity="0..1" />
+          <End Role="menu" Type="Self.menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vrsta_korisnici">
+              <PropertyRef Name="vrsta_korisnici_id" />
+            </Principal>
+            <Dependent Role="menu">
+              <PropertyRef Name="vrsta_korisnici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_parking_karte_nacin_placanja">
+          <End Role="nacin_placanja" Type="Self.nacin_placanja" Multiplicity="0..1" />
+          <End Role="parking_karte" Type="Self.parking_karte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nacin_placanja">
+              <PropertyRef Name="nacin_placanja_id" />
+            </Principal>
+            <Dependent Role="parking_karte">
+              <PropertyRef Name="nacin_placanja_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_parking_karte_parking_zone">
+          <End Role="parking_zone" Type="Self.parking_zone" Multiplicity="0..1" />
+          <End Role="parking_karte" Type="Self.parking_karte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="parking_zone">
+              <PropertyRef Name="parking_zone_id" />
+            </Principal>
+            <Dependent Role="parking_karte">
+              <PropertyRef Name="parking_zona_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ParkingServisPajaASPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="korisnici" EntityType="Self.korisnici" />
+          <EntitySet Name="menu" EntityType="Self.menu" />
+          <EntitySet Name="nacin_placanja" EntityType="Self.nacin_placanja" />
+          <EntitySet Name="parking_karte" EntityType="Self.parking_karte" />
+          <EntitySet Name="parking_zone" EntityType="Self.parking_zone" />
+          <EntitySet Name="vrsta_korisnici" EntityType="Self.vrsta_korisnici" />
+          <AssociationSet Name="FK_korisnici_vrsta_korisnika" Association="Self.FK_korisnici_vrsta_korisnika">
+            <End Role="vrsta_korisnici" EntitySet="vrsta_korisnici" />
+            <End Role="korisnici" EntitySet="korisnici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_parking_karte_korisnici" Association="Self.FK_parking_karte_korisnici">
+            <End Role="korisnici" EntitySet="korisnici" />
+            <End Role="parking_karte" EntitySet="parking_karte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_menu_vrsta_korisnici" Association="Self.FK_menu_vrsta_korisnici">
+            <End Role="vrsta_korisnici" EntitySet="vrsta_korisnici" />
+            <End Role="menu" EntitySet="menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_parking_karte_nacin_placanja" Association="Self.FK_parking_karte_nacin_placanja">
+            <End Role="nacin_placanja" EntitySet="nacin_placanja" />
+            <End Role="parking_karte" EntitySet="parking_karte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_parking_karte_parking_zone" Association="Self.FK_parking_karte_parking_zone">
+            <End Role="parking_zone" EntitySet="parking_zone" />
+            <End Role="parking_karte" EntitySet="parking_karte" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ParkingServisPajaASPModelStoreContainer" CdmEntityContainer="ParkingServisPajaASPEntities">
+          <EntitySetMapping Name="korisnici">
+            <EntityTypeMapping TypeName="ParkingServisPajaASPModel.korisnici">
+              <MappingFragment StoreEntitySet="korisnici">
+                <ScalarProperty Name="korisnici_id" ColumnName="korisnici_id" />
+                <ScalarProperty Name="ime" ColumnName="ime" />
+                <ScalarProperty Name="prezime" ColumnName="prezime" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="vrsta_korisnika_id" ColumnName="vrsta_korisnika_id" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="menu">
+            <EntityTypeMapping TypeName="ParkingServisPajaASPModel.menu">
+              <MappingFragment StoreEntitySet="menu">
+                <ScalarProperty Name="layout" ColumnName="layout" />
+                <ScalarProperty Name="tekst" ColumnName="tekst" />
+                <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+                <ScalarProperty Name="slug" ColumnName="slug" />
+                <ScalarProperty Name="icon" ColumnName="icon" />
+                <ScalarProperty Name="naslov_menu" ColumnName="naslov_menu" />
+                <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+                <ScalarProperty Name="controller" ColumnName="controller" />
+                <ScalarProperty Name="action" ColumnName="action" />
+                <ScalarProperty Name="redosled" ColumnName="redosled" />
+                <ScalarProperty Name="vrsta_korisnici_id" ColumnName="vrsta_korisnici_id" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nacin_placanja">
+            <EntityTypeMapping TypeName="ParkingServisPajaASPModel.nacin_placanja">
+              <MappingFragment StoreEntitySet="nacin_placanja">
+                <ScalarProperty Name="nacin_placanja_id" ColumnName="nacin_placanja_id" />
+                <ScalarProperty Name="naziv_nacin_placanja" ColumnName="naziv_nacin_placanja" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="parking_karte">
+            <EntityTypeMapping TypeName="ParkingServisPajaASPModel.parking_karte">
+              <MappingFragment StoreEntitySet="parking_karte">
+                <ScalarProperty Name="parking_karte_id" ColumnName="parking_karte_id" />
+                <ScalarProperty Name="parking_zona_id" ColumnName="parking_zona_id" />
+                <ScalarProperty Name="registarske_tablice" ColumnName="registarske_tablice" />
+                <ScalarProperty Name="parking_karata_datum_isteka" ColumnName="parking_karata_datum_isteka" />
+                <ScalarProperty Name="nacin_placanja_id" ColumnName="nacin_placanja_id" />
+                <ScalarProperty Name="parking_karta_datum_kupovine" ColumnName="parking_karta_datum_kupovine" />
+                <ScalarProperty Name="parking_kazna" ColumnName="parking_kazna" />
+                <ScalarProperty Name="korisnici_id" ColumnName="korisnici_id" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="parking_zone">
+            <EntityTypeMapping TypeName="ParkingServisPajaASPModel.parking_zone">
+              <MappingFragment StoreEntitySet="parking_zone">
+                <ScalarProperty Name="parking_zone_id" ColumnName="parking_zone_id" />
+                <ScalarProperty Name="naziv_parking_zone" ColumnName="naziv_parking_zone" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vrsta_korisnici">
+            <EntityTypeMapping TypeName="ParkingServisPajaASPModel.vrsta_korisnici">
+              <MappingFragment StoreEntitySet="vrsta_korisnici">
+                <ScalarProperty Name="vrsta_korisnici_id" ColumnName="vrsta_korisnici_id" />
+                <ScalarProperty Name="naziv_vrsta_korisnici" ColumnName="naziv_vrsta_korisnici" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

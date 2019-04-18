@@ -1,0 +1,88 @@
+﻿@model IEnumerable<ParkingAuth.Models.menu>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/back-end/layout/back_end_layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.slug)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.icon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.naslov_menu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.parent_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.controller)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.action)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.redosled)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.created_at)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.updated_at)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vrsta_korisnici.naziv_vrsta_korisnici)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.slug)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.icon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.naslov_menu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.parent_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.controller)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.action)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.redosled)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.created_at)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.updated_at)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vrsta_korisnici.naziv_vrsta_korisnici)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.menu_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.menu_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.menu_id })
+        </td>
+    </tr>
+}
+
+</table>

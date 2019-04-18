@@ -1,0 +1,450 @@
+﻿
+
+@{
+    ViewBag.Title = "index Back enda";
+    Layout = "~/Views/back-end/layout/back_end_layout.cshtml";
+
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div id="zone_12002" class="s-widget-zone exchange-zone md-right lg-right md-50" style="width: 34%;">
+    <div class="s-widget-zone-content k-widget k-header k-tabstrip" data-role="tabstrip" tabindex="0" role="tablist">
+        <div class="s-widget-header"><table><tbody><tr><td class="s-widget-title">Menjačnica</td></tr></tbody></table></div><ul class="k-tabstrip-items k-reset"><li class="k-item k-state-default k-first k-tab-on-top k-state-active" role="tab" aria-controls="55f71a1e-8ba4-4df0-89f1-38023ce88696-1" aria-selected="true" style=""><span class="k-loading k-complete"></span><a class="k-link">Kalkulator</a></li><li class="k-item k-state-default k-last" role="tab" aria-controls="55f71a1e-8ba4-4df0-89f1-38023ce88696-2"><span class="k-loading k-complete"></span><a class="k-link">Kursna lista</a></li></ul><div class="k-content k-state-active" id="55f71a1e-8ba4-4df0-89f1-38023ce88696-1" role="tabpanel" aria-expanded="true" style="opacity: 1;">
+            <div class="s-widget ui-corner-all FXTradingCalculator" id="widget_16475">
+                <div class="s-widget-content">
+                    <div class="s-widget-header ui-corner-tl ui-corner-tr nochrome">
+                        <table style="width: 100%;">
+                            <tbody>
+                                <tr>
+                                    <td class="s-widget-button s-widget-button-collapse" data-resource-key="Holos.Rendering.widgetCollapse" data-resource-attr="title" style="display: none" title="Zatvori">
+                                        <div class="s-icon s-icon-collapse"></div>
+                                    </td>
+                                    <td class="s-widget-button s-widget-button-expand" data-resource-key="Holos.Rendering.widgetExpand" data-resource-attr="title" style="display: none" title="Otvori">
+                                        <div class="s-icon s-icon-expand"></div>
+                                    </td>
+                                    <td class="s-widget-button s-widget-button-back" data-resource-key="Holos.Rendering.widgetBack" data-resource-attr="title" style="display: none" title="Nazad">
+                                        <div class="s-icon s-icon-back"></div>
+                                    </td>
+                                    <td style="width: 100%" class="s-widget-title">Kalkulator</td>
+                                    <td class="s-widget-button">
+                                        <div class="s-widget-loading"></div>
+                                    </td>
+                                    <td class="s-widget-button s-widget-button-filter" data-resource-key="Holos.Rendering.widgetFilter" data-resource-attr="title" style="display: none" title="">
+                                        <div class="s-icon s-icon-filter"></div>
+                                    </td>
+                                    <!--<td class="s-widget-button s-widget-options widget-options" data-resource-key="Holos.Rendering.widgetFilter" data-resource-attr="title" style="display: none">
+                                        <div class="s-icon s-icon-options" ></div>
+                                    </td>-->
+                                    <td class="s-widget-button s-widget-button-maximize" data-resource-key="Holos.Rendering.widgetMaximize" data-resource-attr="title" style="display: none" title="Povećaj">
+                                        <div class="s-icon s-icon-maximize"></div>
+                                    </td>
+                                    <td class="s-widget-button s-widget-button-minimize" data-resource-key="Holos.Rendering.widgetMinimize" data-resource-attr="title" style="display: none" title="Smanji">
+                                        <div class="s-icon s-icon-minimize"></div>
+                                    </td>
+                                    <td class="s-widget-button s-widget-button-remove" data-resource-key="Holos.Rendering.widgetRemove" data-resource-attr="title" style="display: none" title="Ukloni">
+                                        <div class="s-icon s-icon-remove"></div>
+                                    </td>
+                                    <td class="s-widget-button s-widget-button-help" style="display: none;">
+                                        <div class="s-icon s-icon-help"></div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="s-widget-body-info" style="display: none"></div>
+                    <div class="s-widget-body-error-summary" style="display: none"></div>
+                    <div class="s-widget-body-header" style="display: none"></div>
+                    <div class="s-widget-body ui-corner-bl ui-corner-br" style="position: relative;">
+                        <div>
+                            <div class="tab init-select">
+                                <div class="currency currency-left">
+                                    <div class="select-3">
+                                        <div class="flag RSD" data-bind="css: inputCurrencyName"></div>
+                                        <select data-bind="options: currencyList, optionsText: 'CurrencyCode', optionsValue: 'CurrencyCodeNumeric', value: inputCurrency" class="select-elem"><option value="978">EUR</option><option value="840">USD</option><option value="756">CHF</option><option value="826">GBP</option><option value="36">AUD</option><option value="643">RUB</option><option value="752">SEK</option><option value="124">CAD</option><option value="208">DKK</option><option value="392">JPY</option><option value="578">NOK</option><option value="941">RSD</option></select>
+                                    </div>
+                                    <input type="text" class="val-convert-peace-1 input-2" data-bind="value: inputAmount, blockNonNumbers: { allowDecimal: true, integerPlaces: 15 }, disable: outputAmountActive(), event: { 'keyup': checkInputAmount }">
+                                </div>
+
+                                <p class="eq">=</p>
+
+                                <div class="currency currency-right">
+                                    <div class="select-3">
+                                        <div class="flag EUR" data-bind="css: outputCurrencyName"></div>
+                                        <select data-bind="options: currencyList, optionsText: 'CurrencyCode', optionsValue: 'CurrencyCodeNumeric', value: outputCurrency" class="select-elem"><option value="978">EUR</option><option value="840">USD</option><option value="756">CHF</option><option value="826">GBP</option><option value="36">AUD</option><option value="643">RUB</option><option value="752">SEK</option><option value="124">CAD</option><option value="208">DKK</option><option value="392">JPY</option><option value="578">NOK</option><option value="941">RSD</option></select>
+                                    </div>
+                                    <input type="text" class="val-convert-peace-2 input-2" data-bind="value: outputAmount, blockNonNumbers: { allowDecimal: true, integerPlaces: 15 }, disable: inputAmountActive(), event: { 'keyup': checkInputAmount }">
+                                </div>
+                                <a data-bind="jqEvent: { 'click': btnGoToExhangeClick }" class="btn-1 color-8" data-resource-key="Widgets.FXTradingCalculator.btnExecute">Izvrši razmenu valuta</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="k-content" id="55f71a1e-8ba4-4df0-89f1-38023ce88696-2" role="tabpanel" aria-hidden="true" aria-expanded="false"></div>
+    </div>
+</div>
+
+
+<div class="main-content-inner">
+    <!-- sales report area start -->
+    <div class="sales-report-area mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="single-report mb-xs-30">
+                    <div class="s-report-inner pr--20 pt--30 mb-3">
+
+                        <div class="icon"><i class="fa fa-btc"></i></div>
+                        <div class="s-report-title d-flex justify-content-between">
+                            <h4 class="header-title mb-0">Bitcoin</h4>
+                            <p>24 H</p>
+                        </div>
+                        <div class="d-flex justify-content-between pb-2">
+                            <h2>$ 4567809,987</h2>
+                            <span>- 45.87</span>
+                        </div>
+                    </div>
+                    <canvas id="coin_sales1" height="100"></canvas>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="single-report mb-xs-30">
+                    <div class="s-report-inner pr--20 pt--30 mb-3">
+                        <div class="icon"><i class="fa fa-btc"></i></div>
+                        <div class="s-report-title d-flex justify-content-between">
+                            <h4 class="header-title mb-0">Bitcoin Dash</h4>
+                            <p>24 H</p>
+                        </div>
+                        <div class="d-flex justify-content-between pb-2">
+                            <h2>$ 4567809,987</h2>
+                            <span>- 45.87</span>
+                        </div>
+                    </div>
+                    <canvas id="coin_sales2" height="100"></canvas>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="single-report">
+                    <div class="s-report-inner pr--20 pt--30 mb-3">
+                        <div class="icon"><i class="fa fa-eur"></i></div>
+                        <div class="s-report-title d-flex justify-content-between">
+                            <h4 class="header-title mb-0">Euthorium</h4>
+                            <p>24 H</p>
+                        </div>
+                        <div class="d-flex justify-content-between pb-2">
+                            <h2>$ 4567809,987</h2>
+                            <span>- 45.87</span>
+                        </div>
+                    </div>
+                    <canvas id="coin_sales3" height="100"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- sales report area end -->
+    <!-- overview area start -->
+    <div class="row">
+        <div class="col-xl-9 col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="header-title mb-0">Overview</h4>
+                        <select class="custome-select border-0 pr-3">
+                            <option selected>Last 24 Hours</option>
+                            <option value="0">01 July 2018</option>
+                        </select>
+                    </div>
+                    <div id="verview-shart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 coin-distribution">
+            <div class="card h-full">
+                <div class="card-body">
+                    <h4 class="header-title mb-0">Coin Distribution</h4>
+                    <div id="coin_distribution"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- overview area end -->
+    <!-- market value area start -->
+    <div class="row mt-5 mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-sm-flex justify-content-between align-items-center">
+                        <h4 class="header-title mb-0">Market Value And Trends</h4>
+                        <select class="custome-select border-0 pr-3">
+                            <option selected>Last 24 Hours</option>
+                            <option value="0">01 July 2018</option>
+                        </select>
+                    </div>
+                    <div class="market-status-table mt-4">
+                        <div class="table-responsive">
+                            <table class="dbkit-table">
+                                <tr class="heading-td">
+                                    <td class="mv-icon">Logo</td>
+                                    <td class="coin-name">Coin Name</td>
+                                    <td class="buy">Buy</td>
+                                    <td class="sell">Sells</td>
+                                    <td class="trends">Trends</td>
+                                    <td class="attachments">Attachments</td>
+                                    <td class="stats-chart">Stats</td>
+                                </tr>
+                                <tr>
+                                    <td class="mv-icon">
+                                        <img src="~/assets/back/images/icon/market-value/icon1.png" alt="icon">
+                                    </td>
+                                    <td class="coin-name">Dashcoin</td>
+                                    <td class="buy">30% <img src="~/assets/back/images/icon/market-value/triangle-down.png" alt="icon"></td>
+                                    <td class="sell">20% <img src="~/assets/back/images/icon/market-value/triangle-up.png" alt="icon"></td>
+                                    <td class="trends"><img src="~/assets/back/images/icon/market-value/trends-up-icon.png" alt="icon"></td>
+                                    <td class="attachments">$ 56746,857</td>
+                                    <td class="stats-chart">
+                                        <canvas id="mvaluechart"></canvas>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="mv-icon">
+                                        <div class="mv-icon"><img src="~/assets/back/images/icon/market-value/icon2.png" alt="icon"></div>
+                                    </td>
+                                    <td class="coin-name">LiteCoin</td>
+                                    <td class="buy">30% <img src="~/assets/back/images/icon/market-value/triangle-down.png" alt="icon"></td>
+                                    <td class="sell">20% <img src="~/assets/back/images/icon/market-value/triangle-up.png" alt="icon"></td>
+                                    <td class="trends"><img src="~/assets/back/images/icon/market-value/trends-down-icon.png" alt="icon"></td>
+                                    <td class="attachments">$ 56746,857</td>
+                                    <td class="stats-chart">
+                                        <canvas id="mvaluechart2"></canvas>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="mv-icon">
+                                        <div class="mv-icon"><img src="~/assets/back/images/icon/market-value/icon3.png" alt="icon"></div>
+                                    </td>
+                                    <td class="coin-name">Euthorium</td>
+                                    <td class="buy">30% <img src="~/assets/back/images/icon/market-value/triangle-down.png" alt="icon"></td>
+                                    <td class="sell">20% <img src="~/assets/back/images/icon/market-value/triangle-up.png" alt="icon"></td>
+                                    <td class="trends"><img src="~/assets/back/images/icon/market-value/trends-up-icon.png" alt="icon"></td>
+                                    <td class="attachments">$ 56746,857</td>
+                                    <td class="stats-chart">
+                                        <canvas id="mvaluechart3"></canvas>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="mv-icon">
+                                        <div class="mv-icon"><img src="~/assets/back/images/icon/market-value/icon4.png" alt="icon"></div>
+                                    </td>
+                                    <td class="coin-name">Bitcoindash</td>
+                                    <td class="buy">30% <img src="~/assets/back/images/icon/market-value/triangle-down.png" alt="icon"></td>
+                                    <td class="sell">20% <img src="~/assets/back/images/icon/market-value/triangle-up.png" alt="icon"></td>
+                                    <td class="trends"><img src="~/assets/back/images/icon/market-value/trends-up-icon.png" alt="icon"></td>
+                                    <td class="attachments">$ 56746,857</td>
+                                    <td class="stats-chart">
+                                        <canvas id="mvaluechart4"></canvas>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- market value area end -->
+    <!-- row area start -->
+    <div class="row">
+        <!-- Live Crypto Price area start -->
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Live Crypto Price</h4>
+                    <div class="cripto-live mt-5">
+                        <ul>
+                            <li>
+                                <div class="icon b">b</div> Bitcoin<span><i class="fa fa-long-arrow-up"></i>$876909.00</span>
+                            </li>
+                            <li>
+                                <div class="icon l">l</div> Litecoin<span><i class="fa fa-long-arrow-up"></i>$29780.00</span>
+                            </li>
+                            <li>
+                                <div class="icon d">d</div> Dashcoin<span><i class="fa fa-long-arrow-up"></i>$13276.00</span>
+                            </li>
+                            <li>
+                                <div class="icon b">b</div> Bitcoindash<span><i class="fa fa-long-arrow-down"></i>$5684.890</span>
+                            </li>
+                            <li>
+                                <div class="icon e">e</div> Euthorium<span><i class="fa fa-long-arrow-down"></i>$3890.98</span>
+                            </li>
+                            <li>
+                                <div class="icon t">b</div> Tcoin<span><i class="fa fa-long-arrow-up"></i>$750.789</span>
+                            </li>
+                            <li>
+                                <div class="icon b">b</div> Bitcoin<span><i class="fa fa-long-arrow-up"></i>$325.037</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Live Crypto Price area end -->
+        <!-- trading history area start -->
+        <div class="col-lg-8 mt-sm-30 mt-xs-30">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-sm-flex justify-content-between align-items-center">
+                        <h4 class="header-title">Trading History</h4>
+                        <div class="trd-history-tabs">
+                            <ul class="nav" role="tablist">
+                                <li>
+                                    <a class="active" data-toggle="tab" href="#buy_order" role="tab">Buy Order</a>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" href="#sell_order" role="tab">Sell Order</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <select class="custome-select border-0 pr-3">
+                            <option selected>Last 24 Hours</option>
+                            <option value="0">01 July 2018</option>
+                        </select>
+                    </div>
+                    <div class="trad-history mt-4">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="buy_order" role="tabpanel">
+                                <div class="table-responsive">
+                                    <table class="dbkit-table">
+                                        <tr class="heading-td">
+                                            <td>Trading ID</td>
+                                            <td>Time</td>
+                                            <td>Status</td>
+                                            <td>Amount</td>
+                                            <td>Last Trade</td>
+                                        </tr>
+                                        <tr>
+                                            <td>78211</td>
+                                            <td>4.00 AM</td>
+                                            <td>Pending</td>
+                                            <td>$758.90</td>
+                                            <td>$05245.090</td>
+                                        </tr>
+                                        <tr>
+                                            <td>782782</td>
+                                            <td>4.00 AM</td>
+                                            <td>Pending</td>
+                                            <td>$77878.90</td>
+                                            <td>$7778.090</td>
+                                        </tr>
+                                        <tr>
+                                            <td>89675978</td>
+                                            <td>4.00 AM</td>
+                                            <td>Pending</td>
+                                            <td>$0768.90</td>
+                                            <td>$0945.090</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="sell_order" role="tabpanel">
+                                <div class="table-responsive">
+                                    <table class="dbkit-table">
+                                        <tr class="heading-td">
+                                            <td>Trading ID</td>
+                                            <td>Time</td>
+                                            <td>Status</td>
+                                            <td>Amount</td>
+                                            <td>Last Trade</td>
+                                        </tr>
+                                        <tr>
+                                            <td>8964978</td>
+                                            <td>4.00 AM</td>
+                                            <td>Pending</td>
+                                            <td>$445.90</td>
+                                            <td>$094545.090</td>
+                                        </tr>
+                                        <tr>
+                                            <td>89675978</td>
+                                            <td>4.00 AM</td>
+                                            <td>Pending</td>
+                                            <td>$78.90</td>
+                                            <td>$074852945.090</td>
+                                        </tr>
+                                        <tr>
+                                            <td>78527878</td>
+                                            <td>4.00 AM</td>
+                                            <td>Pending</td>
+                                            <td>$0768.90</td>
+                                            <td>$65465.090</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- trading history area end -->
+    </div>
+    <!-- row area end -->
+    <div class="row mt-5">
+        <!-- latest news area start -->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Latest News</h4>
+                    <div class="letest-news mt-5">
+                        <div class="single-post mb-xs-40 mb-sm-40">
+                            <div class="lts-thumb">
+                                <img src="~/assets/back/images/blog/post-thumb1.jpg" alt="post thumb">
+                            </div>
+                            <div class="lts-content">
+                                <span>Admin Post</span>
+                                <h2><a href="blog.html">Sed ut perspiciatis unde omnis iste.</a></h2>
+                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some...</p>
+                            </div>
+                        </div>
+                        <div class="single-post">
+                            <div class="lts-thumb">
+                                <img src="~/assets/back/images/blog/post-thumb2.jpg" alt="post thumb">
+                            </div>
+                            <div class="lts-content">
+                                <span>Admin Post</span>
+                                <h2><a href="blog.html">Sed ut perspiciatis unde omnis iste.</a></h2>
+                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- latest news area end -->
+        <!-- exchange area start -->
+        <div class="col-xl-6 mt-md-30 mt-xs-30 mt-sm-30">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Exchange</h4>
+                    <div class="exhcange-rate mt-5">
+                        <form action="#">
+                            <div class="input-form">
+                                <input type="text" value="0.76834">
+                                <span>BTC</span>
+                            </div>
+                            <div class="exchange-devider">To</div>
+                            <div class="input-form">
+                                <input type="text" value="5689.846">
+                                <span>USD</span>
+                            </div>
+                            <div class="exchange-btn">
+                                <button type="submit">Exchange Now</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- exchange area end -->
+    </div>
+    <!-- row area start-->
+</div>

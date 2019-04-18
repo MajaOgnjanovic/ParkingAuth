@@ -1,0 +1,141 @@
+﻿<!doctype html>
+<html class="" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>@ViewBag.Title || M&I</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Place favicon.ico in the root directory -->
+    <link href="~/assets/front/images/logo/mi.png" type="~/assets/front/images/x-icon" rel="shortcut icon">
+    <!-- All css files are included here. -->
+    <link rel="stylesheet" href="~/assets/front/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/front/css/core.css">
+    <link rel="stylesheet" href="~/assets/front/css/style.css">
+    <link rel="stylesheet" href="~/assets/front/css/responsive.css">
+    <!-- customizer style css -->
+    <link href="#" data-style="styles" rel="stylesheet">
+    <!-- Modernizr JS -->
+    <script src="~/assets/front/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- Pre Loader
+    ============================================ -->
+    <div class="preloader">
+        <div class="loading-center">
+            <div class="loading-center-absolute">
+                <div class="object object_one"></div>
+                <div class="object object_two"></div>
+                <div class="object object_three"></div>
+            </div>
+        </div>
+    </div>
+    @{
+        Html.RenderPartial("~/Views/front-end/layout/Meniizbaze.cshtml");
+    }
+    @RenderBody()
+    <!-- Body main wrapper start -->
+    
+        
+        <!--Footer section start-->
+        <div class="footer">
+            <div class="footer-top ptb-100 grey-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="single-footer">
+                                <h3 class="single-footer-title">Contact us</h3>
+                                <div class="single-footer-details mt-30">
+                                    <p class="addresses">
+                                        <strong>Address:</strong> House No 08, Ro ad No 08<br>Din Bari, Dhaka, Bangladesh
+                                    </p>
+                                    <p class="email">
+                                        <strong> Email:</strong> Username@gmail.com<br>Damo@gmail.com
+                                    </p>
+                                    <p class="phon">
+                                        <strong>Phone:</strong>(+660 256 24857)<br>(+660 256 24857)
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="single-footer">
+                                <h3 class="single-footer-title">open hours</h3>
+                                <div class="single-footer-details mt-30">
+                                    <p>Lorem ipsum dolor sit amet,  tore latthi dimu consectetueiusmodm dost   </p>
+                                    <div class="open-list">
+                                        <ul>
+                                            <li>Monday- Friday. . . . . . . . . . . . . <span>8 AM - 5PM</span></li>
+                                            <li>Sunday. . . . . . . . . . . . . . . . . . . . . <span>12 AM - 5PM</span></li>
+                                            <li>Saturday . . . . . . . . . . . . . . . . . . . . . . . . . . . <span>Close</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="single-footer instagram">
+                                <h3 class="single-footer-title">instagram</h3>
+                                <div class="single-footer-details mt-30">
+                                    <ul>
+                                        <li><a href="#"><img src="~/assets/front/images/instagram/1.jpg" alt=""></a></li>
+                                        <li><a href="#"><img src="~/assets/front/images/instagram/2.jpg" alt=""></a></li>
+                                        <li><a href="#"><img src="~/assets/front/images/instagram/3.jpg" alt=""></a></li>
+                                        <li><a href="#"><img src="~/assets/front/images/instagram/4.jpg" alt=""></a></li>
+                                        <li><a href="#"><img src="~/assets/front/images/instagram/5.jpg" alt=""></a></li>
+                                        <li><a href="#"><img src="~/assets/front/images/instagram/6.jpg" alt=""></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="single-footer newsletter">
+                                <h3 class="single-footer-title">Newsletter</h3>
+                                <div class="single-footer-details mt-30">
+                                    <p>Lorem ipsum dolor sit amet,  tore latthi dimu consectetueiusmodm dost </p>
+                                    <div class="newsletter-form">
+                                        <form action="#">
+                                            <input type="text" placeholder="Enter your email">
+                                            <button type="submit">submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright text-center ptb-20 white-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            Copyright &copy Ivana Maja;
+                            <script>document.write(new Date().getFullYear());</script> Sva prava zadrzana
+                            <a target="_blank" href="https://freethemescloud.com/">Free themes Cloud</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Footer section end-->
+   
+    <!-- Body main wrapper end -->
+    <!-- Placed js at the end of the document so the pages load faster -->
+    <!-- All js plugins included in this file. -->
+    <script src="~/assets/front/js/vendor/jquery-1.12.0.min.js"></script>
+    <script src="~/assets/front/js/bootstrap.min.js"></script>
+    <script src="~/assets/front/js/jquery.nivo.slider.pack.js"></script>
+    <script src="~/assets/front/js/isotope.pkgd.min.js"></script>
+
+    <script src="~/assets/front/js/jquery.magnific-popup.js"></script>
+    <script src="~/assets/front/js/jquery.counterup.min.js"></script>
+    <script src="~/assets/front/js/animated-headlines.js"></script>
+    <script src="~/assets/front/js/waypoints.min.js"></script>
+    <script src="~/assets/front/js/jquery.collapse.js"></script>
+    <script src="~/assets/front/js/plugins.js"></script>
+    <script src="~/assets/front/js/main.js"></script>
+</body>
+</html>

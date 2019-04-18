@@ -1,0 +1,93 @@
+﻿@model IEnumerable<ParkingAuth.Models.parking_karte>
+
+@{
+    ViewBag.Title = "Index parking karte";
+    Layout = "~/Views/back-end/layout/back_end_layout.cshtml";
+
+}
+<h2>@ViewBag.Title</h2>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.registarske_tablice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.parking_karata_datum_isteka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.parking_karta_datum_kupovine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.parking_kazna)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.created_at)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.updated_at)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.korisnici.ime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nacin_placanja.naziv_nacin_placanja)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.parking_zone.naziv_parking_zone)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.registarske_tablice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.parking_karata_datum_isteka)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.parking_karta_datum_kupovine)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.parking_kazna)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.created_at)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.updated_at)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.korisnici.ime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nacin_placanja.naziv_nacin_placanja)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.parking_zone.naziv_parking_zone)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.parking_karte_id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.parking_karte_id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.parking_karte_id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

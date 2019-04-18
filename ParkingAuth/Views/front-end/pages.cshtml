@@ -1,0 +1,16 @@
+﻿@using ParkingAuth.Models
+@model menu
+@{
+    if (Model.layout == null || Model.layout == "")
+    {
+        Layout = "~/Views/front-end/layout/front_end_layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/front-end/layout/"
+            + Model.layout + ".cshtml";
+    }
+}
+<p>@Html.DisplayNameFor(model => model.naslov_menu)</p>
+<p>@Html.DisplayFor(model => model.naslov_menu)</p>
+<p>@Html.Raw(Model.tekst)</p>

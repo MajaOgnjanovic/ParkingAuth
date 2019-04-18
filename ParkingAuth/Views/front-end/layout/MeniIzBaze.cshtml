@@ -1,0 +1,120 @@
+﻿@using ParkingAuth.Models
+@{
+    ParkingServisPajaASPEntities db = new ParkingServisPajaASPEntities();
+    IEnumerable<menu> MenuTree = db.menu.OrderBy(x => x.redosled).ToList();
+    var result = (from m in MenuTree
+                  select new menu
+                  {
+                      menu_id = m.menu_id,
+                      slug = m.slug,
+                      icon = m.icon,
+                      parent_id = m.parent_id,
+                      naslov_menu = m.naslov_menu,
+                      controller = m.controller,
+                      action = m.action,
+                      vrsta_korisnici_id = m.vrsta_korisnici_id
+                  }).ToList();
+}
+
+<!--Header section start-->
+<div class="header sticky-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 col-sm-3 col-xs-6">
+                <div class="logo"><a href="https://www.ikea.com/"><img src="~/assets/front/images/logo/mi.png" alt=""></a></div>
+            </div>
+            <div class="col-md-10 col-sm-9 col-xs-6">
+                <div class="mgea-full-width">
+                    <div class="header-right">
+                        <div class="header-menu hidden-sm hidden-xs">
+                            <div class="menu">
+                                <ul>
+                                   <!--<li><a href="index.html">Home</a></li>-->
+                                    <!--Pocetak koda foreach-->
+                                    @{foreach (var level_1 in MenuTree
+                                         .Where(s => s.parent_id == 0)
+                                         .Where(s => s.vrsta_korisnici_id == 3)
+                                         .GroupBy(parametar_objekat => new
+                                         {
+                                             parametar_objekat.menu_id // Join to the parent menu_id
+                                                                   }).Distinct().ToList()) // Return All Distinct values
+                                        { // Level 1  foreach
+                                            <li>
+                                                <a href="~/@level_1.FirstOrDefault().controller/@level_1.FirstOrDefault().action/@level_1.FirstOrDefault().slug">@level_1.FirstOrDefault().naslov_menu</a>
+                                                @foreach (var level_2 in (MenuTree
+                                                .Where(s => s.parent_id == level_1.FirstOrDefault()
+                                                .menu_id).ToList()))
+                                                {
+                                                    <ul class="dropdown_menu">
+                                                        <li><a href="~/@level_2.controller/@level_2.action/@level_2.slug">@level_2.naslov_menu</a></li>
+                                                    </ul>
+                                                    // Level 2 foreach content
+                                                }
+
+                                            </li>
+
+                                        } // End /Level 1  foreach
+                                    }
+
+
+                                    <!--END koda foreach-->
+
+
+                                    <li><a href="gallery.html">gallery</a></li>
+                                    <li><a href="blog.html">blog</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="search">
+                            <div class="search-inner">
+                                <a href="#"><i class="mdi mdi-magnify"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="search-inside" style="display: none;">
+                        <a href="#" class="search-close"><i class="mdi mdi-close"></i></a>
+                        <div class="search-overlay"></div>
+                        <div class="searchbar-inner">
+                            <div class="search">
+                                <form action="#">
+                                    <input type="search" placeholder="Search here"><button type="submit"><i class="mdi mdi-magnify"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mobile menu start -->
+    <div class="mobile-menu-area hidden-lg hidden-md">
+        <div class="container">
+            <div class="col-md-12">
+                <nav id="dropdown">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about-us.html">about</a></li>
+
+                        <li>
+                            <a href="#">Feature</a>
+                            <ul class="dropdown_menu">
+                                <li><a href="404.html">404</a></li>
+                                <li><a href="contact-us.html">contact us</a></li>
+                                <li><a href="blog.html">Blog page</a></li>
+                                <li><a href="blog-details.html">Blog details</a></li>
+                                <li><a href="food-menu.html">Food menu</a></li>
+                                <li><a href="gallery.html">gallery</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="gallery.html">gallery</a></li>
+                        <li><a href="blog.html">blog</a></li>
+                        <li><a href="contact-us.html">contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Mobile menu end -->
+</div>
+<!--Header section end-->
